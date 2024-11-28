@@ -19,7 +19,7 @@ namespace ExceptionExercises
         public static House FindHouse(string possibleHouse)
         {
             possibleHouse = possibleHouse.Trim().ToLower();
-            House house = House.Slytherin;
+            House house;
             switch (possibleHouse)
             {
                 case "griffindor":
@@ -34,6 +34,8 @@ namespace ExceptionExercises
                 case "slytherin":
                     house = House.Slytherin;
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(possibleHouse, "Not a valid House value");
             }
             return house;
         }

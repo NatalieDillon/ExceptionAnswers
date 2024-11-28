@@ -6,18 +6,29 @@ namespace ExceptionExercises
     {
         static void Main()
         {            
-            CakeDivision();
+            //CakeDivision();
             //DetermineHouse();
-            //ReadDiary();
+            ReadDiary();
         }
                
         public static void CakeDivision()
         {
-            int cakeSlices = 32;
-            Console.WriteLine("Please enter the number of children");
-            int children = Convert.ToInt32(Console.ReadLine());
-            int slices = cakeSlices / children;
-            Console.WriteLine($"Each child will get {slices} slices");
+            try
+            {
+				int cakeSlices = 32;
+				Console.WriteLine("Please enter the number of children");
+				int children = Convert.ToInt32(Console.ReadLine());
+				int slices = cakeSlices / children;
+				Console.WriteLine($"Each child will get {slices} slices");
+			}
+            catch (FormatException ex)
+            {
+				Console.WriteLine($"Input must be convertible to an int {ex}");
+			}
+            catch (DivideByZeroException e)
+            {
+                Console.WriteLine($"Cannot divide by zero {e}");
+            }
         }
 
         public static void ReadDiary()
@@ -32,10 +43,17 @@ namespace ExceptionExercises
 
         public static void DetermineHouse()
         {
-            Console.WriteLine("Which house do you want to be added to?");
-            string userHouse = Console.ReadLine() ?? string.Empty;
-            House house = SortingHat.FindHouse(userHouse);
-            Console.WriteLine($"You have been assigned to {house}");
+            try
+            {
+				Console.WriteLine("Which house do you want to be added to?");
+				string userHouse = Console.ReadLine() ?? string.Empty;
+				House house = SortingHat.FindHouse(userHouse);
+				Console.WriteLine($"You have been assigned to {house}");
+			}
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Could not determine house {ex}");
+            }
         }
 
 
